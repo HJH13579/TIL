@@ -125,7 +125,9 @@
 - ctrl + d : 다중선택
 - alt + shift + 화살표 : 복사
 - alt + 화살표 : 이동
-- ! + tab : 기본적인 html 구조 만들어줌
+- alt + 클릭 : 커서 다중 선택
+
+</br>
 
 > Tip for pycharm 용
 - alt + j : 다중선택
@@ -138,4 +140,390 @@
   <p>안녕하세요 <span>김싸피
 
 ```
+
+</br>
+
+## CSS 기본기
+
+### Box Model
+
+> CSS 원칙 1
+- 모든 요소는 네모(박스모델)
+- 위에서부터 아래로, 왼쪽에서 오른쪽으로 쌓인다.(= normal flow) = 좌측 상단에 배치
+
+</br>
+
+> Box model 구성
+- 모든 HTML 요소는 box 형태로 되어있음
+- 하나의 박스는 네 영역으로 이루어짐
+  - content
+  - padding
+  - border
+  - margin
+
+![Box model 구성](../assets/Box_model_구성.png)  
+
+
+![Box model 구성](../assets/Box_model_%EA%B5%AC%EC%84%B1_ex1.png)
+![Box model 구성](../assets/Box_model_%EA%B5%AC%EC%84%B1_ex2.png)
+![Box model 구성](../assets/Box_model_%EA%B5%AC%EC%84%B1_ex3.png)
+![Box model 구성](../assets/Box_model_%EA%B5%AC%EC%84%B1_ex4.png)
+![Box model 구성](../assets/Box_model_%EA%B5%AC%EC%84%B1_ex5.png)
+
+</br>
+
+> box-sizing
+- 기본적으로 모든 요소의 box-sizing은 content-box
+  - Padding을 제외한 순수 contents 영역만을 box로 지정
+- 다만, 우리가 일반적으로 영역을 볼 때는 border까지의 너비를 100px 보는 것을 원함
+  - 그 경우 box-sizing을 border-box으로 설정
+
+</br>
+
+> box-sizing 실습
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box1 {
+      width: 500px;
+      border-width: 2px;
+      border-style: dashed;
+      border-color: black;
+      padding-left: 50px;
+      margin-bottom: 30px;
+    }
+
+    .box2 {
+      width: 500px;
+      border: 2px solid black;
+      padding: 20px 30px;
+    }
+  </style>
+</head>
+
+
+<body>
+  <div class="box1">div</div>
+  <div class="box2">div</div>
+</body>
+</html>
+```
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 100px;
+      margin: 10px auto;
+      padding: 20px;
+      bottom: 1px solid black;
+      color: white;
+      text-align: center;
+      background-color: blueviolet;
+    }
+
+    .box-sizing {
+      box-sizing: border-box;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+
+
+<body>
+  <div class="box">content-box</div>
+  <div class="box box-sizing">border-box</div>
+</body>
+</html>
+```
+위 코드의 보라색 사각형의 넓이는 얼마일까?
+'width'가 100px이니 100이라고 생각할 수 있지만, 사실 F12로 보면 padding에 테두리까지 해서 142px로 나온다. 
+
+![box-sizing 실습](../assets/box_sizing.png)
+
+그러나 우리가 원하는 너비는 100px! 그러므로 border-box로 box-sizing을 주자!
+
+![box-sizing 실습](../assets/box_sizing2.png)
+
+</br>
+
+## 개발자 도구
+- 많은 웹브라우저들 중 우리는 가장 보기 편한 크롬을 이용할 예정
+- F12
+
+</br>
+
+### Emmet
+> HTML Emmet
+- ! + tab : 기본적인 html 구조 만들어줌
+- div.[class 이름] + tab
+ 
+```html
+<div class="class 이름"></div>
+```
+
+- div#[id 이름] + tab
+
+```html
+<div id="id 이름"></div>
+```
+
+- div.[class 이름]*n + tab
+
+```html
+<div class="class 이름"></div> n개 생성
+```
+
+- div.[class 이름]>p#[id 이름]*n : 
+
+```html  
+<div class="class 이름">
+  <p id="id 이름"></p>
+  <p id="id 이름"></p>
+  ......
+  n개 생성
+</div>
+```
+
+- lorem : 의미 없는 텍스트 채우기 for 화면, 디자인을 더 잘 보기 위해
+  - lorem[n]: n단어
+  - lorem*n: n단락
+
+</br>
+
+> CSS Emmet
+- mt[n] : margin-top [n]px;
+- pd[n] : padding-top [n]px;
+- w[n] : width: [n]px;
+- h[n] : height: [n]px;
+---
+
+
+
+## CSS Display
+
+> CSS 원칙 2
+- display에 따라 크기와 배치가 달라진다.
+
+</br>
+
+> 대표적으로 활용되는 display
+- display: block (블럭 요소)
+  - 한 줄 전체를 차지하는 요소!(=화면 크기 전체의 가로 폭을 차지한다.)
+  - 줄 바꿈이 일어나는 요소(다른 elem를 밀어낸다!)
+  - 블록 레벨 요소 안에 인라인 레벨 요소가 들어갈 수 있음.
+  - width, height, margin-top, margin-bottom을 지정할 수 있다.
+  - ex) div / p / ul,ol,li / hr / form 등
+
+- display: inline (인라인 요소)
+  - 줄 바꿈이 일어나지 않는 행의 일부 요소
+  - content를 마크업 하고 있는 만큼만 가로폭을 차지한다. = 기본 너비 : 컨텐츠 영역만큼
+  - width, height, margin-top, margin-bottom을 지정할 수 없다.
+  - 상하 여백은 line-height로 지정
+  - ex) span / a / img / input, label / b, em, i, strong 등
+
+- display: inline-block
+  - block과 inline 레벨 요소의 특징을 모두 가짐
+  - inline처럼 한 줄에 표시 가능하고, block처럼 width, height, margin 속성을 모두 지정할 수 있음
+
+- display: none
+  - 해당 요소를 화면에 표시하지 않고 공간조차 부여되지 않음
+  - 이와 비슷한 visibility:hidden은 해당 요소가 공간은 차지하나 화면에 표시만 하지 않는다.
+
+
+</br>
+
+```html
+<!-- HTML -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="block.css">
+</head>
+<body>
+  <div class="box"></div>
+  <div class="box"></div>
+</body>
+</html>
+```
+
+```CSS
+/* CSS */
+.box {
+  background-color: aquamarine;
+  width: 100px;
+  height: 100px;
+  margin-top: 20px;
+}
+```
+
+</br>
+
+> 속성에 따른 수평 정렬
+
+![속성에 따른 수평 정렬](../assets/수평_정렬.png)
+
+
+```html
+<!-- HTML -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="block.css">
+  <title>Document</title>
+</head>
+<body>
+
+  <div>
+    <div class="box">
+      <span>DIV</span>
+    </div>
+    <div class="box">
+      <span>DIV</span>
+    </div> 
+  </div>
+
+</body>
+</html>
+```
+
+```CSS
+/* CSS */
+.box {
+  background-color: aquamarine;
+  width: 100px;
+  height: 100px;
+  /* margin-top: 20px; */
+
+  /*기본설정: margin-right: auto; */
   
+  /* margin-left: auto; */
+
+  /* margin-right: auto;
+  margin-left: auto; */
+
+  margin: 20px auto;
+
+  /* 텍스트 가운데 이동 */
+  text-align: center;
+
+  /* inline 형태로 직접 바꿔줄 수 있다.
+  display: inline */
+}
+
+span  {
+  line-height: 100px;
+}
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="display_none.css">
+  <title>Document</title>
+</head>
+<body>
+
+  <div>
+    <div class="box test">
+      <span>1</span>
+    </div>
+    <div class="box">
+      <span>2</span>
+    </div> 
+  </div>
+
+</body>
+</html>
+```
+```css
+.box {
+  background-color: aquamarine;
+  width: 100px;
+  height: 100px;
+  margin: 20px auto;
+
+  /* 텍스트 가운데 이동 */
+  text-align: center;
+}
+
+span  {
+  line-height: 100px;
+}
+
+.test {
+  display: none;
+
+  /* visibility: hidden; */
+}
+```
+
+</br>
+
+## CSS Position
+- 문서 상에서 요소의 위치를 지정(어떤 기준으로 어디에 배치시킬지)
+- 모를 때는 공식 문서로
+
+---
+
+- static : 모든 태그의 기본 값(기준 위치)
+  - 일반적인 요소의 배치 순서에 따름(좌측 상단)
+  - 부모 요소 내에서 배치도리 때는 부모 요소의 위치를 기준으로 배치됨
+- relative: 상대 위치
+  - 자기 자신의 static 위치를 기준으로 이동(normal flow 유지)
+  - 레이아웃에서 요소가 차지하는 공간은 static일 때와 같음(normal position 대비 offset)
+- absolute : 절대 위치
+  - 요소를 일반적인 문서 흐름에서 제거 후 레이아웃에 공간을 차지하지 않음(normal flow에서 벗어남)
+  - static이 아닌 가장 가까이 있는 부모/조상 요소를 기준으로 이동(없는 경우 body)
+- fixed : 고정 위치
+  - 요소를 일반적인 문서 흐름에서 제거 후 레이아웃에 공간을 차지하지 않음(normal flow에서 벗어남)
+  - 부모 요소와 관계없이 viewpoint를 기준으로 이동
+    - 스크롤 시에도 항상 같은 곳에 위치함
+- sticky : 스크롤에 따라 static -> fixed로 변경
+  - 속성을 적용한 박스는 문서 안에서 position: static 상태와 같이 일반적인 흐름에 따르지만, 스크롤 위치가 임계점에 이르면 position: fixed와 같이 박스를 화면에 고정할 수 있는 속성
+
+![static](../assets/static.png)
+
+![relative](../assets/relative.png)
+
+![absolute](../assets/absolute.png)
+
+![fixed](../assets/fixed.png)
+
+![sticky](../assets/sticky.png)
+
+</br>
+
+> absolute vs. relative
+
+```html
+<body>
+  <div class="parent">
+    <div class="absolute">형</div>
+    
+```

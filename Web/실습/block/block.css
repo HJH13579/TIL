@@ -1,0 +1,25 @@
+.box {
+  background-color: aquamarine;
+  width: 100px;
+  height: 100px;
+  /* margin-top: 20px; */
+
+  /*기본설정: margin-right: auto; */
+  
+  /* margin-left: auto; */
+
+  /* margin-right: auto;
+  margin-left: auto; */
+
+  margin: 20px auto;
+
+  /* 텍스트 가운데 이동 */
+  text-align: center;
+
+  /* inline 형태로 직접 바꿔줄 수 있다.
+  display: inline */
+}
+
+span  {
+  line-height: 100px;
+}

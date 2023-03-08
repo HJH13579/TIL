@@ -1,0 +1,19 @@
+.box {
+  background-color: aquamarine;
+  width: 100px;
+  height: 100px;
+  margin: 20px auto;
+
+  /* 텍스트 가운데 이동 */
+  text-align: center;
+}
+
+span  {
+  line-height: 100px;
+}
+
+.test {
+  display: none;
+
+  /* visibility: hidden; */
+}
