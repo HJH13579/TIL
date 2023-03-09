@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+
+  flex-direction: row;
+  /* flex-direction: row-reverse;
+  flex-direction: column;
+  flex-direction: column-reverse; */
+
+  /* 기본값
+  flex-wrap: unwrap; */
+  flex-wrap: wrap;
+  
+  /* 기본값
+  justify-content: flex-start; */
+
+  /* justify-content: flex-end; */
+
+  /* 각각의 item 사이의 공간을 일정하게 유지 */
+  /* justify-content: space-between; */
+  /* item을 둘러싼 공간 자체를 기준으로 모든 여백을 일정하게 유지 */
+  justify-content: space-around;
+  
+  /* justify-content: space-evenly; */
+
+}
+
+.item {
+  width: 100px;
+  height: 100px;
+  background-color: lightgreen;
+
+  margin-top: 20px;
+  margin-right: 20px;
+
+  font-size: 50px;
+}
+
+
