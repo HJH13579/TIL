@@ -10,7 +10,7 @@
 
 - 큐의 선입선출 구조
 
-![큐의 선입선출 구조](assets/Queue_FIFO.png)
+![큐의 선입선출 구조](../assets/Queue_FIFO.png)
 
 -  큐의 기본 연산
    -  삽입: enQueue
@@ -20,7 +20,7 @@
 
 > 큐의 주요 연산
 
-![큐의 주요 연산](assets/Queue_calc.png)
+![큐의 주요 연산](../assets/Queue_calc.png)
 
 </br>
 
