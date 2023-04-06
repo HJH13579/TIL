@@ -508,3 +508,174 @@ SELECT column_list FROM table_name LIMIT row_count;
 6. DISTINCT
 7. ORDER BY
 8. LIMIT / LIMIT OFFSET
+
+</br>
+
+# Grouping data
+> Aggregation function
+- "집계 함수"
+- 여러 행의 값을 1개의 값으로
+- 값 집합의 최대값, 최소값, 평균, 합계 및 개수를 계산
+- 값 집합에 대한 계산을 수행하고 단일값을 반환
+  - 여러 행으로부터 하나의 결과 값을 반환하는 함수
+- SELECT 문의 GROUP BY 절과 함께 종종 사용
+- AVG(), COUNT(), MAX(), MIN(), SUM()
+- 숫자를 기준으로 계산이 되어져야 하기 때문에 반드시 컬럼의 데이터 타입이 숫자(INTEGER)일 때만 사용 가능
+
+</br>
+
+> GROUP BY clause
+``` SQL
+SELECT column_1, aggregate_function(column_2) FROM table_name 
+GROUP BY column_1, column2;
+```
+- "Make a set of summary rows from a set of rows."
+- 특정 그룹으로 묶인 결과를 생성
+- 선택된 컬럼 값을 기준으로 데이터(행)들의 공통 값을 묶어서 결과로 나타냄
+- SELECT 문에서 선택적으로 사용가능한 절
+- SELECT 문의 FROM 절 뒤에 작성
+  - WHERE 절이 포함된 경우 WHERE 절 뒤에 작성해야 함
+- 각 그룹에 대해 MIN, MAX, SUM, COUNT 또는 AVG와 같은 집계 함수(aggregate function)를 적용하여 각 그룹에 대한 추가적인 정보 제공가능
+- AS 키워드를 사용해 컬럼명을 임시로 변경하여 조회할 수 있다
+  - 내부 정보가 바뀌는 것이 아닌, 보여주는 형식만 바뀐 것
+
+</br>
+
+# Changing data
+> INSERT statement
+
+``` SQL
+INSERT INTO table_name(column1, column2, ...)
+VALUES (value1, value2, ...)
+```
+
+- 새 행을 테이블에 삽입
+- 문법 규칙
+  1. 먼저 INSERT INTO 키워드 뒤에 데이터를 삽입할 테이블의 이름을 지정
+  2. 테이블 이름 뒤에 쉼표로 구분된 컬럼 목록을 추가
+     - 컬럼 목록은 선택 사항이지만 컬럼 목록을 포함하는 것이 권장됨
+  3. VALUES 키워드 뒤에 쉼표로 구분된 값 목록을 추가
+     - 만약 컬럼 목록을 생략하는 경우 값 목록의 모든 컬럼에 대한 값을 지정해야 함
+     - 값 목록의 값 개수는 컬럼 목록의 컬럼 개수와 같아야 함
+
+</br>
+
+> UPDATE statement
+
+```SQL
+UPDATE table_name
+SET column_1 = new_value_1,
+  column_2 = new_value_2
+WHERE 
+  search_condition;
+```
+
+1. UPDATE 절 이후에 업데이트할 테이블을 지정
+2. SET 절에서 테이블의 각 컬럼에 대해 새 값을 설정
+3. WHERE 절의 조건을 사용하여 업데이트할 행을 지정
+   - WHERE 절은 선택 사항
+   - 생략하면 UPDATE 문은 테이블의 모든 행에 있는 데이터를 업데이트 함
+4. 선택적으로 ORDER BY 및 LIMIT 절을 사용하여 업데이트 할 행 수를 지정할 수도 있음
+
+</br>
+
+> DELETE statement
+
+```SQL
+DELETE FROM table_name
+WHERE search_condition;
+```
+
+- 테이블에서 행을 제거
+- 테이블의 한 행, 여러 행 및 모든 행을 삭제할 수 있음
+- 문법 규칙
+  1. DELETE FROM 키워드 뒤에 행을 제거하려는 테이블의 이름을 지정
+  2. WHERE 절에 검색 조건을 추가하여 제거할 행을 식별
+     - WHERE 절은 선택 사항이며, 생략하면 DELETE 문은 테이블의 모든 행을 삭제
+  3. 선택적으로 ODER BY 및 LIMIT 절을 사용하여 삭제할 행 수를 지정할 수도 있음
+
+</br>
+
+# 정규형
+> 데이터 정규형
+- 데이터베이스를 구조화 하는 방법론
+- 데이터의 중복을 최소화하고 일관성과 무결성을 보장하기 위함
+- 데이터의 구조를 더 좋은 구조로 바꾸는 것을 정규화라고 함
+- 관계형 데이터베이스의 경우 6개의 정규형이 있음
+- 제 1 정규형, 제 2 정규형, 제 3 정규형
+
+</br>
+
+> 제 1 정규형
+- 하나의 속성값이 복수형을 가지면 안 됨!
+- 하나의 속성에는 값이 하나만 들어가야 한다는 소리
+- 값을 2개 넣지 말고 밑에 행을 추가해줘야한다.
+
+![제 1 정규형](../assets/제1정규형.png)
+
+</br>
+
+> 제 2 정규형
+- 테이블의 테마와 관련 없는 컬럼은 다른 테이블로 분리하는 것
+- 테이블과 관련 없는 애들은 따로 분리하나라는 것
+
+
+![제 2 정규형](../assets/제2정규형_1.png)
+
+![제 2 정규형](../assets/제2정규형_2.png)
+
+- Composite PK와 Partial Dependency를 키워드로 공부
+- 부분 함수적 종속성
+  - 다른 속성에 의존(종속)하는 속성은 따로 분리할 것
+  - 복합키(composite key) : 테이블에서 행을 유일하게 구분하기 위해 두 개 이상의 속성을 조합하여 사용하는 기본키
+  - 키가 아닌 속성이 기본키의 일부분에만 영향이 있으면, 제거하면 된다. = 테이블의 테마와 맞지 않으면 분리
+  - == 짱친을 만들어줬으면, 각각 부하를 가지고 있으면 안 된다!
+
+</br>
+
+> 제 3 정규형
+- 다른 속성에 의존(종속)하는 속성은 따로 분리할 것
+- Transitive Dependency
+
+</br>
+
+# JOIN
+> 테이블은 여러개로 나눠진다
+
+![테이블 여러 개로 나눈다](../assets/split_table_1.png)
+
+![테이블 여러 개로 나눈다](../assets/split_table_2.png)
+
+![테이블 여러 개로 나눈다](../assets/split_table_3.png)
+
+</br>
+
+> 테이블 합치기
+
+ ![테이블 합치기](../assets/combine_table_1.png)
+
+![테이블 합치기](../assets/combine_table_2.png)
+
+![CROSS JOIN](../assets/CROSS_JOIN.png)
+
+![CROSS JOIN](../assets/CROSS_JOIN_2.png)
+
+</br>
+
+> INNER JOIN
+
+![INNER JOIN](../assets/INNER_JOIN.png)
+
+![INNER JOIN](../assets/INNER_JOIN_2.png)
+
+</br>
+
+> 데이터는 일정하지 않다
+
+![일정하지 않은 데이터](../assets/unstable_data.png)
+ 
+![LEFT(OUTER) JOIN](../assets/LEFT(OUTER)_JOIN.png))
+
+![RIGHT(OUTER) JOIN](../assets/RIGHT(OUTER)_JOIN.png))
+
+![정리](../assets/JOIN_정리.png)
