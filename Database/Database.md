@@ -149,6 +149,15 @@ $ python manage.py createsuperuser
 
 ![Django ManyToManyField](../assets/Django_ManyToManyField_5.png)
 
+![Django ManyToManyField](../assets/Django_ManyToManyField_6.png)
+
+![Django ManyToManyField](../assets/Django_ManyToManyField_7.png)
+
+![Django ManyToManyField](../assets/Django_ManyToManyField_8.png)
+
+![Django ManyToManyField](../assets/Django_ManyToManyField_9.png)
+
+
 
 
 
@@ -157,6 +166,7 @@ $ python manage.py createsuperuser
 
 ## M:N (User-USer)
 - User 자기 자신과의 M:N 관계 설정을 통한 팔로우 기능 구현하기
+-혼자서 구현할 줄 알아야한다.
 
 ### Profile
 - follow 흐름을 위한 프로필 페이지 먼저 작성
@@ -172,3 +182,137 @@ $ python manage.py createsuperuser
 ## Follow
 
 ![모델 관계 설정](../assets/모델_관계_설정_1.png)
+
+![모델 관계 설정](../assets/모델_관계_설정_2.png)
+
+![Follow 구현](../assets/Follow_구현_1.png)
+
+![Follow 구현](../assets/Follow_구현_2.png)
+
+![Follow 구현](../assets/Follow_구현_3.png)
+
+![Follow 구현](../assets/Follow_구현_4.png)
+
+## Fixtures
+- Fixtures를 사용해 모델에 초기 데이터를 제공하는 방법
+
+</br>
+
+> 초기 데이터의 필요성
+- 협업하는 A, B가 있다고 가정
+  1. A가 먼저 프로젝트를 작업 후 github에 push한다.
+     - gitignore 설정으로 인해 DB는 업로드하지 않기 때문에 A가 개발하면서 사용한 데이터는 올라가지 않는다.
+  2. B가 github에서 A push한 프로젝트를 pull (혹은 clone) 한다.
+     - 마찬가지로 프로젝트는 받았지만 A가 생성하고 조작한 데이터는 없는 빈 프로젝트를 맏게 된다.
+- 이처럼 Django 프로젝트의 앱을 처음 설정할 때 동일하게 준비된 데이터로 데이터베이스를 미리 채우는 것이 필요한 순간이 있다.
+- Django에서는 fixtures를 사용해 앱에 초기 데이터(initial data)를 제공할 수 있다.
+- 즉, migrations와 fixtures를 사용하여 data와 구조를 공유하게 된다.
+
+### Providing data with fixtures
+- 실무 위주
+- 검색 후 사용할 줄만 알면 됨
+
+</br>
+
+> 사전준비
+- M:N까지 모두 작성된 Django 프로젝트에서 각 데이터를 최소 2개 이상 생성해두기
+
+</br>
+
+> fixtures
+- Django가 데이터베이스로 가져오는 방법을 알고 있는 데이터 모음
+  -  Django가 직접 만들기 때문에 데이터베이스 구조에 맞추어 작성 되어있음
+- fixtures 파일은 직접 만드는 것이 아니라 dumpdata를 사용하여 생성하는 것!
+
+</br>
+
+> fixtures 생성 및 로드
+- 생성(데이터 추출)
+  - dumpdata
+- 로드(데이터 입력)
+  - loaddata
+
+![dumpdata](../assets/dumpdata_1.png)
+
+![dumpdata](../assets/dumpdata_2.png)
+
+> Json 파일 예쁘게 보기
+1. 
+![Prettify Json](../assets/Prettify_JSON.png)
+
+1. 'crtl+shift+p'에서 'prettify json' 검색 후 적용 후 json 파일 열기 
+
+![dumpdata](../assets/dumpdata_3.png)
+
+> 수정
+- 'articles.user'이 아니라, 'accounts.user'
+
+![dumpdata](../assets/dumpdata_4.png)
+
+![loaddata](../assets/loaddata_1.png)
+
+![loaddata](../assets/loaddata_2.png)
+
+![loaddata](../assets/loaddata_3.png)
+
+![loaddata](../assets/loaddata_4.png)
+
+![loaddata](../assets/loaddata_5.png)
+
+## Improve Query
+- 개념적 이해가 중요
+- 면접 시 중요
+
+![Improve Query](../assets/Improve_Query_1.png)
+
+![Improve Query](../assets/Improve_Query_2.png)
+
+![Improve Query](../assets/Improve_Query_3.png)
+
+![Improve Query](../assets/Improve_Query_4.png)
+
+![Improve Query](../assets/Improve_Query_5.png)
+
+![Improve Query](../assets/Improve_Query_6.png)
+
+![Improve Query](../assets/Improve_Query_8.png)
+
+![Improve Query](../assets/Improve_Query_9.png)
+
+![Improve Query](../assets/Improve_Query_10.png)
+
+![Improve Query](../assets/Improve_Query_11.png)
+
+![Improve Query](../assets/Improve_Query_12.png)
+
+![Improve Query](../assets/Improve_Query_13.png)
+
+![Improve Query](../assets/Improve_Query_14.png)
+
+![Improve Query](../assets/Improve_Query_15.png)
+
+![Improve Query](../assets/Improve_Query_16.png)
+
+![Improve Query](../assets/Improve_Query_17.png)
+
+![Improve Query](../assets/Improve_Query_18.png)
+
+![Improve Query](../assets/Improve_Query_19.png)
+
+![Improve Query](../assets/Improve_Query_20.png)
+
+![Improve Query](../assets/Improve_Query_21.png)
+
+> select_related vs. prefetch_related
+- select_related : 나를 기준으로 대상이 1명일 때
+- prefetch_related : 나를 기준으로 대상이 다수일 때
+
+![Improve Query](../assets/Improve_Query_22.png)
+
+![Improve Query](../assets/Improve_Query_23.png)
+
+![Improve Query](../assets/Improve_Query_24.png)
+
+![Improve Query](../assets/Improve_Query_25.png)
+
+![Improve Query](../assets/Improve_Query_26.png)

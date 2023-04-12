@@ -74,3 +74,18 @@ def profile(request, username):
         'person' : person
     }
     return render(request, 'accounts/profile.html', context)
+
+# follower는 POST만 접근해야함으로 decorator로 막아주기
+@require_POST
+def follow(request, user_pk):
+    # 로그인 안하고 팔로우 시 로그인 창으로 이동시키기
+    # 로그인 안하고 있을 때 팔로우 버튼을 없는 상태로 만들 수도 있다.
+    if request.user.is_authenticated:
+        person = get_user_model().objects.get(pk=user_pk)
+        if person != request.user:
+            if person.followers.filter(pk=request.user.pk).exists():
+                person.followers.remove(request.user)
+            else:
+                person.followers.add(request.user)
+        return redirect('accounts:profile', person.username)
+    return redirect('accounts:login')
