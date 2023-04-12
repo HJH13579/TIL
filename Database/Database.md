@@ -148,3 +148,27 @@ $ python manage.py createsuperuser
 ![Django ManyToManyField](../assets/Django_ManyToManyField_4.png)
 
 ![Django ManyToManyField](../assets/Django_ManyToManyField_5.png)
+
+
+
+
+
+
+
+## M:N (User-USer)
+- User 자기 자신과의 M:N 관계 설정을 통한 팔로우 기능 구현하기
+
+### Profile
+- follow 흐름을 위한 프로필 페이지 먼저 작성
+
+![Profile 구현](../assets/Profile_구현_1.png)
+
+![Profile 구현](../assets/Profile_구현_2.png)
+
+![Profile 구현](../assets/Profile_구현_3.png)
+
+![Profile 구현](../assets/Profile_구현_4.png)
+
+## Follow
+
+![모델 관계 설정](../assets/모델_관계_설정_1.png)
