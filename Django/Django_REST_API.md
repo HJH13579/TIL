@@ -226,3 +226,102 @@
 
 - 일단 JSON을 응답하는 Django 서버를 구성하는 법을 학습
 
+![사전 준비](../assets/Response_JSON_사전준비_1.png)
+
+![사전 준비](../assets/Response_JSON_사전준비_2.png)
+
+![사전 준비](../assets/Response_JSON_사전준비_3.png)
+
+## Response
+> 개요
+- 다양한 방법으로 JSON 데이터 응답해보기
+  1. HTML 응답 (여태까지 사용한 방법, 이제는 Django Template는 더 이상 사용하지 않는다.)
+  2. JsonResponse()를 사용한 JSON 응답
+  3. Django Serializer를 사용한 JSON 응답
+  4. Django REST framework를 사용한 JSON 응답
+
+![JsonREsponse()를 사용한 JSON 응답](../assets/JsonResponse_1.png)
+
+![JsonREsponse()를 사용한 JSON 응답](../assets/JsonResponse_2.png)
+
+![JsonREsponse()를 사용한 JSON 응답](../assets/JsonResponse_3.png)
+
+![JsonREsponse()를 사용한 JSON 응답](../assets/JsonResponse_4.png)
+
+![Django Serializer를 사용한 JSON 응답](../assets/Django_Serializer_1.png)
+
+![Django Serializer를 사용한 JSON 응답](../assets/Django_Serializer_2.png)
+
+![Serailization in Django](../assets/Serialization_1.png)
+
+![Serailization in Django](../assets/Serialization_2.png)
+
+![Serailization in Django](../assets/Serialization_3.png)
+
+![Django REST framework를 사용한 KSON 응답](../assets/Django_REST_framework_1.png)
+
+![Django REST framework를 사용한 KSON 응답](../assets/Django_REST_framework_2.png)
+
+![Django REST framework를 사용한 KSON 응답](../assets/Django_REST_framework_3.png)
+
+![Django REST framework를 사용한 KSON 응답](../assets/Django_REST_framework_4.png)
+
+</br>
+
+## Django REST framework - Single Model
+> 개요
+- 단일 모델의 data를 Serialization하여 JSON으로 변환하는 방법에 대한 학습
+
+</br>
+
+> 사전 준비
+- Postman 설치 & 회우너가입
+  - https://www.postman.com/downloads/
+- Postman
+  - API를 구축하고 사용하기 위한 플랫폼
+  - API를 빠르게 만들 수 있는 여러 도구 및 기능을 제공
+
+![Postman](../assets/Postman_1.png)
+
+![Postman](../assets/Postman_2.png)
+
+![사전 준비](../assets/Single_Model_1.png)
+
+![사전 준비](../assets/Single_Model_2.png)
+
+![사전 준비](../assets/Single_Model_3.png)
+
+![사전 준비](../assets/Single_Model_4.png)
+
+## ModelSerializer
+
+![ModelSerializer](../assets/ModelSerializer_1.png)
+
+![ModelSerializer](../assets/ModelSerializer_2.png)
+
+![ModelSerializer](../assets/ModelSerializer_3.png)
+
+![ModelSerializer](../assets/ModelSerializer_4.png)
+
+![ModelSerializer](../assets/ModelSerializer_5.png)
+
+![ModelSerializer](../assets/ModelSerializer_6.png)
+
+![ModelSerializer](../assets/ModelSerializer_7.png)
+
+## Build RESTful API - Article
+
+![URL과 HTTP requests methods 설계](../assets/Build_RESTful_API_Article_1.png)
+
+![GET - List](../assets/Build_RESTful_API_Article_2.png)
+
+![GET - List](../assets/Build_RESTful_API_Article_3.png)
+
+!['api_view' decorator](../assets/Build_RESTful_API_Article_4.png)
+
+![GET - Detail](../assets/Build_RESTful_API_Article_5.png)
+
+![GET - Detail](../assets/Build_RESTful_API_Article_6.png)
+
+![GET - Detail](../assets/Build_RESTful_API_Article_7.png)
+
