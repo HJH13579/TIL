@@ -325,3 +325,121 @@
 
 ![GET - Detail](../assets/Build_RESTful_API_Article_7.png)
 
+![POST](../assets/RESTful_API_POST_1.png)
+
+![POST](../assets/RESTful_API_POST_2.png)
+
+![POST](../assets/RESTful_API_POST_3.png)
+
+![POST](../assets/RESTful_API_POST_4.png)
+
+![Raising an exception on invalid data](../assets/Raising_an_exception_on_invalid_data_1.png)
+
+![Raising an exception on invalid data](../assets/Raising_an_exception_on_invalid_data_2.png)
+
+![DELETE](../assets/RESTful_API_DELETE_1.png)
+
+![DELETE](../assets/RESTful_API_DELETE_2.png)
+
+![PUT](../assets/RESTful_API_PUT_1.png)
+
+![PUT](../assets/RESTful_API_PUT_2.png)
+
+![PUT](../assets/RESTful_API_PUT_3.png)
+
+</br>
+
+## Django REST framework - N:1 Relation
+
+> 개요
+- N:1 관계에서의 모델 data를 Serialization하여 JSON으로 변환하는 방법 학습
+
+![Django REST framework - N:1 Relation](../assets/REST_framework_N_1_Relation_1.png)
+
+![Django REST framework - N:1 Relation](../assets/REST_framework_N_1_Relation_2.png)
+
+![GET - List](../assets/GET_List_1.png)
+
+![GET - List](../assets/GET_List_2.png)
+
+![GET - List](../assets/GET_List_3.png)
+
+![GET - Detail](../assets/GET_Detail_1.png)
+
+![GET - Detail](../assets/GET_Detail_2.png)
+
+![POST](../assets/REST_N_1_POST_1.png)
+
+![Passing Addtitional attributes to .save()](../assets/Passing_Addtitional_attributes_to_save().png)
+
+![POST](../assets/REST_N_1_POST_2.png)
+
+![읽기 전용 필드 설정](../assets/읽기_전용_필드_설정.png)
+
+![POST](../assets/REST_N_1_POST_3.png)
+
+![DELETE & PUT](../assets/REST_N_1_DELETE_PUT_1.png)
+
+![DELETE & PUT](../assets/REST_N_1_DELETE_PUT_2.png)
+
+![DELETE & PUT](../assets/REST_N_1_DELETE_PUT_3.png)
+
+## N:1 - 역참조 데이터 조회
+> 개요
+1. 특정 게시글에 작성된 댓글 목록 출력하기
+  - 기존 필드 override
+2. 특성 게시글에 작성된 댓글의 개수 출력하기
+  - 새로운 필드 추가
+
+![특정 게시글에 작성된 댓글 목록 출력하기](../assets/특정_게시글에_작성된_댓글_목록_출력하기_1.png)
+
+![특정 게시글에 작성된 댓글 목록 출력하기](../assets/특정_게시글에_작성된_댓글_목록_출력하기_2.png)
+
+![특정 게시글에 작성된 댓글 목록 출력하기](../assets/특정_게시글에_작성된_댓글_목록_출력하기_3.png)
+
+![특정 게시글에 작성된 댓글 목록 출력하기](../assets/특정_게시글에_작성된_댓글_목록_출력하기_4.png)
+
+![특정 게시글에 작성된 댓글 목록 출력하기](../assets/특정_게시글에_작성된_댓글_목록_출력하기_5.png)
+
+![특정 게시글에 작성된 댓글 목록 출력하기](../assets/특정_게시글에_작성된_댓글_목록_출력하기_6.png)
+
+![특정 게시글에 작성된 댓글 목록 출력하기](../assets/특정_게시글에_작성된_댓글_목록_출력하기_7.png)
+
+![특정 게시글에 작성된 댓글 목록 출력하기](../assets/특정_게시글에_작성된_댓글의_개수_출력하기_1.png)
+
+![특정 게시글에 작성된 댓글 목록 출력하기](../assets/특정_게시글에_작성된_댓글의_개수_출력하기_2.png)
+
+![특정 게시글에 작성된 댓글 목록 출력하기](../assets/특정_게시글에_작성된_댓글의_개수_출력하기_3.png)
+
+![읽기 전용 필드 지정 이슈](../assets/읽기_전용_필드_지정_이슈.png)
+
+## Django shortcuts functions
+
+![Django shortcut functions 개요](../assets/Django_shortcut_functions_개요.png)
+
+![get_object_or_404()](../assets/get_object_or_404().png)
+
+![get_list_or_404()](../assets/get_list_or_404().png)
+
+![적용 전/후 비교](../assets/404()_작용_전후_비교.png)
+
+> 사용하는 이유
+- 클라이언트 입장에서 "서버에 오류가 발생하여 요청을 수행할 수 없다(500)"라는 원인이 정확하지 않은 에러를 마주하기 보다는, 서버가 적절한 예외 처리를 하고 클라이언트에게 올바른 에러를 전달하는 것 또한 중요한 요소
+
+</br>
+
+# Sertializer 활용하기
+
+![현재 APIs](../assets/현재_APIs.png)
+
+![Client 요청1](../assets/Client_요청_1.png)
+
+![특정 게시물의 모든 댓글 조회](../assets/특정_게시물의_모든_댓글_조회_1.png)
+
+![특정 게시물의 모든 댓글 조회](../assets/특정_게시물의_모든_댓글_조회_2.png)
+
+![특정 게시물의 모든 댓글 조회](../assets/특정_게시물의_모든_댓글_조회_3.png)
+
+![특정 게시물의 모든 댓글 조회](../assets/특정_게시물의_모든_댓글_조회_4.png)
+
+![Client 요청1](../assets/Client_요청_2.png)
