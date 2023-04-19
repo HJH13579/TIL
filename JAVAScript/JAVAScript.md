@@ -411,3 +411,772 @@ console.log(a, 4)
 5 3
 3 4
 ```
+
+# 함수
+
+> 개요
+- 참조 타입 중 하나로써 function 타입에 속함
+- JavaScript에서 함수를 정의하는 방법은 주로 2가지로 구분
+  - 함수 선언식 (function declaration)
+  - 함수 표현식 (function expression)
+
+</br>
+
+> 함수 선언식 (Function declaration)
+- 일반적인 프로그래밍 언어의 함수 정의 방식
+
+```JavaScript
+function 함수명() {
+  // do something
+}
+```
+
+```JavaScript
+function add(num1, num2) {
+  return num1 + num2
+}
+
+add(2, 7) // 9
+```
+
+</br>
+
+> 함수 표현식 
+- 표현식 내에서 함수를 정의하는 방식
+- 함수 표현식은 함수의 이름을 생략한 익명 함수(function 뒤에 함수명이 없으므로)로 정의 가능
+- 표현된 변수에 따라 성질이 변함 (const의 경우 호스팅 불가, var의 경우 호스팅이 가능하나 function 사용 불가 because var의 initial 할당은 undefined)
+
+```JavaScript
+변수키워드 함수명 = function () {
+  // do something
+}
+```
+
+```JavaScript
+const sub = function (num1, num2) {
+  return num1 - num2
+}
+
+sub(7, 2) // 5
+```
+
+- 표현식에서 함수 이름을 명시하는 것도 가능
+- 다만 이 경우 함수 이름은 호출에 사용 되지 못하고 디버깅 용도로 사용
+  - 가능한 경우 : 내부에서 call이 되는 재귀함수
+
+```JavaScript
+const mySub = function namedSub(num1, num2) {
+  return num1 - num2
+}
+
+mySub(1, 2) // -1
+namedSub(1, 2) // ReferenceError: namedSub is not defined
+```
+
+</br>
+
+> 기본 인자 (Default arguments)
+- 인자 작성 시 '=' 문자 뒤 기본 인자 선언 가능
+
+```JavaScript
+// 'Anonymous' : 아무것도 안 넣은, 빈 값을 넣을 때 사용
+const greeting = function (name = 'Anonymous') {
+  return `Hi ${name}`
+}
+
+greeting() // Hi Anonymous
+```
+
+</br>
+
+> 매개변수와 인자의 개수 불일치 허용
+- 매개변수보다 인자의 개수가 많을 경우
+
+```JavaScript
+const noArgs = function () { // 인자 0개
+  return 0
+}
+
+noArgs(1, 2, 3) // 0 : 인자를 3개를 넣어도 에러 X
+
+const twoArgs = function (arg1, arg2) {
+  return [arg1, arg2]
+}
+
+twoArgs(1, 2, 3) // [1, 2] : 에러 X but 2개까지만 출력
+```
+
+```JavaScript
+// 매개변수보다 인자의 개수가 적을 경우 (매개변수와 인자의 불일치 허용)
+const threeArgs = function (arg1, arg2, arg3) {
+  return [arg1, arg2, arg3]
+}
+
+console.log(threeArgs()) // [ undefined, undefined, undefined ]
+console.log(threeArgs(1)) // [ 1, undefined, undefined ]
+console.log(threeArgs(2, 3)) // [ 2, 3, undefined ]
+```
+
+</br>
+
+> Spread syntax(...)
+- "전개 구문"
+- 전개 구문을 사용하면 배열이나 문자열과 같이 반복 가능한 객체를 배열의 경우는 요소, 함수의 경우는 인자를 확장할 수 있음
+  1. 배열과의 사용
+  2. 함수와의 사용 (Rest parameters)
+
+1. 배열과의 사용 (배열 복사)
+
+```JavaScript
+let parts = ['어깨', '무릎']
+let lyrics = ['머리', ...parts, '발']
+console.log(lyrics)
+// ['머리', '어깨', '무릎', '발]
+```
+
+2. 함수와의 사용 (Rest parameters)
+   - 정해지지 않은 수의 매개변수를 배열로 받을 수 있음
+
+```JavaScript
+function func(a, b, ...theArgs) {
+  //
+}
+```
+
+```JavaScript
+const restOpr = function (arg1, arg2, ...restArgs) {
+  return [arg1, arg2, restArgs]
+}
+
+restOpr(1, 2, 3, 4, 5) // [1, 2, [3,4, 5]]
+restOpr(1, 2) // [1, 2, []] 
+```
+
+</br>
+
+## 선언식과 표현식
+
+> 함수의 타입
+- 선언식 함수와 표현식 함수 모두 타입은 function으로 동일
+
+```JavaScript
+// 함수 표현식
+const sum = function (args) {}
+
+// 함수 선언식
+function sub(args) {}
+
+console.log(typeof sum) // function
+console.log(typeof sub) // function
+```
+
+</br>
+
+> 호이스팅 - 선언식
+- 함수 선언식으로 정의한 함수는 var로 정의한 변수처럼 호이스팅이 발생
+- 즉, 함수 호출 이후에 선언해도 동작함
+
+```JavaScript
+sum(2, 7) // 9
+function sum (num1, num2) {
+  return num1 + num2
+}
+```
+
+</br>
+
+> 호이스팅 - 표현식
+- 반면 함수 표현식으로 선언한 함수는 함수 정의 전에 호출 시 에러 발생
+- 함수 표현식으로 정의된 함수는 변수로 평가되어 변수의 scope 규칙을 따름
+
+```JavaScript
+sug(7, 2) // Uncaught ReferenceError: Cannot access 'sub' before initialization
+function sub (num1, num2) {
+  return num1 - num2
+}
+```
+
+> 선언식과 표현식 정리
+- 가장 대표적인 차이는 <span style='color:red'>호이스팅의 유무</span>
+
+![선언식과 표현식 정리표](../assets/선언식_표현식_정리표.png)
+
+## Arrow Function
+- "함수를 비교적 간결하게 정의할 수 있는 문법"
+- function 키워드와 중괄호를 이용한 구문을 짧게 사용하기 위해 탄생
+1. function 키워드 생략 가능
+2. 함수의 매개변수가 하나뿐이라면 매개변수 '()' 생략 가능
+3. 함수의 내용이 한 줄이라면 '{}'와 'return'도 생략 가능
+- ===함수 표현식에서만 사용 가능
+- 화살표 함수는 항상 익명 함수
+
+```JavaScript
+const arrow1 = function (name) {
+  return `hello, ${name}`
+}
+
+// 1. function 키워드 삭제
+const arrow1 = (name) {
+  return `hello, ${name}`
+}
+
+// 2. 인자가 1개일 경우에만 () 생략 가능
+const arrow1 = name {
+  return `hello, ${name}`
+}
+
+// 3. 함수 바디가 return을 포함한 표현식 1개일 경우에 {} & return 삭제 가능
+const arrow4 = name => `hello, ${name}`
+```
+
+```JavaScript
+// 1. 인자가 없다면? () or _로 표시 가능
+let noArgs = () => `No args`
+noArgs = _ => 'No args'
+
+// 2-1. object를 return 한다면
+let returnObject = () => { return {key: 'value'} } 
+// return을 명시적으로 붙여준다.]
+
+// 2-2. return을 적지 않으려면 괄호를 붙여야 함
+returnObject = () => ({ key: 'value' })
+```
+
+> this
+- Object.Method
+- Method로 실행이 될 때, 바로 앞에 있는 Object == this
+- 파이썬의 self == JavaScript의 this
+  - 파이썬의 Class == JavaScript의 Object
+- 함수 method를 call 할 때 발현
+
+```JavaScript
+const dog = {
+  name : '초코',
+  bark(){
+    console.log(this.name)
+
+    function bark2(){
+      console.log(this.name)
+      console.log(this)
+    }
+    bark2()
+
+  }
+}
+
+dog.bark() 
+// Method(bark())가 call 됬을 때
+// . 앞에 있는 dog = this
+// bark2()의 .(생략) 앞에 undefined가 있으면 에러가 나왔겠지
+// 즉, 앞에는 global(window)
+
+
+// 초코
+// undefined
+// global
+```
+
+</br>
+
+> bark2의 this == dog로 하는 방법
+
+1. 변수 할당
+```JavaScript
+const dog = {
+  name : '초코',
+  bark(){
+    console.log(this.name)
+    const _this = this
+
+    function bark2(){
+      console.log(_this)
+    }
+    bark2()
+    
+  }
+}
+```
+
+2. bind() 사용
+```JavaScript
+const dog = {
+  name : '초코',
+  bark(){
+    console.log(this.name)
+
+    function bark2(){
+      console.log(_this)
+    }
+    bark2().bind(this)
+    
+  }
+}
+```
+
+3. 화살표 함수
+```JavaScript
+const dog = {
+  name : '초코',
+  bark(){
+    console.log(this.name)
+    // 이거 자체가 함수
+    // 선언식으론 사용 불가
+    // 같은 라인에서 쓰는 Object를 그대로 가져온다.
+    cont bark2 = () => {
+      console.log(_this)
+    }
+    bark2()
+  }
+}
+```
+
+```JavaScript
+fucntion getThis() {
+  console.log(this)
+}
+
+getThis()
+// global
+
+const obj1 = {
+  name : 'obj1',
+  getThis : getThis
+}
+
+obj1.getThis()
+// obj1
+
+const obj3 = {
+  obj4 = {
+    name : 'obj4',
+    getThis : getThis
+  }
+}
+
+obj3.obj4.getThis()
+// obj4
+```
+
+</br>
+
+> this INDEX
+1. 전역 문맥에서의 this
+2. 함수 문맥에서의 this
+   - 단순 호출
+   - Method (객체의 메서드로서)
+   - Nested
+
+</br>
+
+> 전역 문맥에서의 this
+- 브라우저의 전역 객체인 window를 가리킴
+  - 전역객체는 모든 객체의 유일한 최상위 객체를 의미
+
+```JavaScript
+console.log(this) // window
+```
+
+</br>
+
+> 함수 문맥에서의 this
+- 함수의 this 키워드는 다른 언어와 조금 다르게 동작
+  - this의 값은 함수를 호출한 방법에 의해 결정됨
+  - 함수 내부에서 this의 값은 함수를 호출한 방법에 의해 좌우됨
+
+1. 단순 호출
+   - 전역 객체를 가리킴
+   - 브라우저에서 전역은 window
+
+```JavaScript
+const myFunc = function() {
+  console.log(this)
+}
+
+//브라우저
+myFunc() // window
+```
+
+</br>
+
+2. Method(Function in Object, 객체의 메서드로서)
+   - 메서드로 선언하고 호출한다면, 객체의 메서드이므로 해당 객체가 바인딩
+
+```JavaScript
+const myObj = {
+  data : 1, 
+  myFunc () {
+    console.log(this) // myObj
+    console.log(this.data) // 1
+  }
+}
+
+myObj.myFunc() // myObj
+```
+
+</br>
+
+3. Nested (Function 키워드)
+- forEach의 콜백 함수에서의 this가 메서드의 객체를 가리키지 못하고 전역 객체 window를 가리킴
+- 단순 호출 방식으로 사용되었기 때문
+- 이를 해결하기 위해 등장한 함수 표현식이 바로 "화살표 함수"
+
+```JavaScript
+const myObj = {
+  numbers: [1],
+  myFunc() {
+    console.log(this) // myObj
+    this.numbers.forEach(function (num){
+      console.log(num) // 1
+      console.log(this) // window
+    }
+    )
+  }
+}
+```
+
+- 이전에 일반 function 키워드와 달리 메서드의 객체를 잘 가리킴
+- 화살표 함수에서 this는 자신을 감싼 정적 범위
+- 자동으로 한 단계 상위의 scope의 context를 바인딩
+
+```JavaScript
+const myObj = {
+  numbers: [1],
+  myFunc() {
+    console.log(this) // myObj
+    this.numbers.forEach((num) => {
+      console.log(num) // 1
+      console.log(this) // myObj
+    }
+    )
+  }
+}
+```
+
+</br>
+
+> 화살표 함수
+- 화살표 함수는 호출의 위치와 상관없이 상위 스코프를 가리킴(Lexical scope this)
+- Lexical scope
+  - 함수를 어디서 호출하는지가 아니라 <span style='color:red'>어디에 선언</span>하였는지에 따라 결정
+  - Static scope라고도 하며 대부분의 프로그래밍 언어에서 따르는 방식
+- 따라서 함수 내의 함수 상황에서 화살표 함수를 쓰는 것을 권장
+
+</br>
+
+> Lexical scope
+
+```JavaScript
+let x = 1 // global
+
+function first() {
+  let x = 10
+  second()
+}
+
+function second() {
+  console.log(x)
+}
+
+first() // 1
+second() // 1
+```
+
+# Array와 Object
+> 개요
+- JavaScript의 데이터 타입 중 참조 타입(reference)에 해당 하는 타입은 Array와 Object이며, 객체라고도 말함
+- 객체는 속성들의 모음(collection)
+
+## 배열 (Array)
+- 키와 속성들을 담고 있는 참조 타입의 객체
+- 순서를 보장하는 특징
+- 주로 대괄호([])를 이용하여 생성
+- 0을 포함한 양의 정수 인덱스로 특정 값에 접근
+- 배열의 길이는 array.length 형태로 접근 가능
+  - 배열의 마지막 원소는 array.length-1로 접근
+
+```JavaScript
+const numbers = [1, 2, 3, 4, 5]
+
+console.log(numbers[0]) // 1
+console.log(numbers[-1]) // undefined
+console.log(numbers.length) // 5
+
+console.log(numbers.[numbers.length - 1]) // 5
+```
+
+## 배열 메서드 기초
+
+![배열 메서드 표](../assets/배열_메서드_표.png)
+
+- array.reverse()
+  - 원본 배열 요소들의 순서를 반대로 정렬
+
+```JavaScript
+const numbers = [1, 2, 3, 4, 5]
+
+numbers.reverse()
+console.log(numbers) // [5, 4, 3, 2, 1]
+```
+
+- array.push()
+  - 배열의 가장 뒤에 요소 추가
+- array.pop()
+  - 배열의 마지막 요소 제거
+
+```JavaScript
+const numbers = [1, 2, 3, 4, 5]
+
+numbers.push(100)
+console.log(numbers) // [1, 2, 3, 4, 5, 100]
+
+console.log(numbers.pop()) // 100
+console.log(numbers) // [1, 2, 3, 4, 5]
+```
+
+- array.includes(value)
+  - 배열에 특정 값(value)이 존재하는지 판별 후 true 또는 false 반환
+
+```JavaScript
+const numbers = [1, 2, 3, 4, 5]
+
+console.log(numbers.includes(1)) // true
+
+console.log(numbers.includes(100)) // false
+```
+
+- array.indexOf(value)
+  - 배열에 특정 값이 존재하는지 확인 후 가장 첫 번째로 찾은 요소의 인덱스 반환
+  - 만약 해당 값이 없을 경우 -1 반환
+
+```JavaScript
+const numbers = [1, 2, 3, 4, 5]
+
+console.log(numbers.indexOf(3)) // 2
+
+console.log(numbers.indexOf(100)) // -1
+```
+
+## 콜백 함수(Callback Function)
+- <span style='color:red'>다른 함수의 인자로 전달되는 함수</span>
+- Argument(인자)로 function(함수)가 들어간다.
+
+```JavaScript
+const numbers = [1, 2, 3]
+numbers.forEach(function (num) {
+  conssole.log(num ** 2)
+})
+// 1
+// 4
+// 9
+```
+
+- forEach 메서드에 callBackFunc 함수를 인자로 넘겨 numbers 배열의 각 요소를 callBackFunc 함수의 인자로 사용
+
+```JavaScript
+const callBackFunction = function (num) {
+  console.log(num ** 2)
+}
+
+const numbers = [1, 2, 3]
+numbers.forEach(callBackFunction)
+// 1
+// 4
+// 9
+```
+
+## 배열 메서드 심화
+> Array Helper Methods
+- 배열을 순회하며 특정 로직을 수행하는 메서드
+- 메서드 호출 시 인자로 callback 함수를 받는 것이 특징
+
+![Array Helper Methods](../assets/Array_Helper_Methods.png)
+
+> array.forEach(callback(element[, index[, array]]))
+
+```JavaScript
+array.forEach(function (element, index, array){
+  // do something
+})
+```
+- 인자로 주어지는 함수(콜백 함수)를 배열의 각 요소에 대해 한 번씩 실행
+  - 콜백 함수는 3가지 매개변수로 구성
+    1. element: 배열의 요소
+    2. index: 배열 요소의 인덱스
+    3. array: 배열 자체
+  - 반환 값(return) 없음
+
+```JavaScript
+// 일단 사용
+const colors = ['red', 'blue', 'green']
+
+printFunc = function (color) {
+  console.log(color)
+}
+
+colors.forEach(printFunc)
+
+// red
+// blue
+// green
+```
+
+```JavaScript
+// 함수 정의를 인자로 넣기
+color.forEach(function (color) {
+  console.log(color)
+})
+```
+
+```JavaScript
+// 화살표 함수 적용
+color.forEach((color) => {
+  return console.log(color)
+})
+```
+
+</br>
+
+> array.map(callback(element[, index[, array]]))
+
+```JavaScript
+array.map(function (element, index, array){
+  // do something
+})
+```
+
+- 배열의 각 요소에 대해 콜백 함수를 한 번씩 실행
+- 콜백 함수의 반환 값을 요소로 하는 새로운 배열 반환
+- 기존 배열 전체를 다른 형태로 바꿀 때 유용
+  - forEach + return 
+
+```JavaScript
+// 일단 사용
+const numbers = [1, 2, 3]
+
+// 함수 정의 (표현식)
+const doubleFunc = function (number) {
+  return number * 2
+}
+
+// 함수를 다른 함수의 인자로 넣기(콜백 함수)
+const doubleNumbers = numbers.map(doubleFunc)
+console.log(doubleNumbers) // [2, 4, 6]
+```
+
+```JavaScript
+// 함수 정의를 인자로 넣기
+const doubleNumbers = numbers.map(function (number){
+  return number * 2
+})
+console.log(doubleNumbers) // [2, 4, 6]
+```
+
+```JavaScript
+// 화살표 함수 적용
+const doubleNumbers = numbers.map((number) => {
+  return number * 2
+})
+console.log(doubleNumbers) // [2, 4, 6]
+```
+
+</br>
+
+> array.filter(callback(element[, index[, array]]))
+
+```JavaScript
+array.filter(function (element, index, array){
+  // do something
+})
+```
+
+- 배열의 각 요소에 대해 콜백 함수를 한 번씩 실행
+- 콜백 함수의 반환 값이 true인 요소들만 모아서 새로운 배열 반환
+- 기존 배열의 요소들을 필터링할 때 유용
+
+```JavaScript
+const products = [
+  { name: 'cucumber', type: 'vegetable'},
+  { name: 'banana', type: 'fruit'},
+  { name: 'carrot', type: 'vegetable'},
+  { name: 'apple', type: 'fruit'},
+]
+
+// 함수 정의
+const fruitFilter = function (product) {
+  return product.type === 'fruit'
+}
+
+// 콜백으로 넘기고
+const fruits = products.filter(fruitFilter)
+console.log(fruits)
+
+// [ { name: 'banana', type: 'fruit'}, { name: 'apple', type: 'fruit'}]
+```
+
+```JavaScript
+// 함수 정의를 인자
+const fruits = products.filter(function (product) {
+  return product.type === 'fruit'
+})
+console.log(fruits)
+```
+
+```JavaScript
+// 화살표 함수 적용
+const fruits = products.filter( (product) => {
+  return product.type === 'fruit'
+})
+console.log(fruits)
+```
+
+> array.reduce(callback(acc, element, [index[, array]])[, initialValue])
+
+```JavaScript
+array.reduce(function (acc, element, index, array){
+  // do something
+}, initialValue)
+```
+
+- 인자로 주어지는 함수(콜백 함수)를 배열의 각 요소에 대해 한 번씩 실행해서, 하나의 결과 값을 반환
+- 배열을 하나의 값으로 계산하는 동작이 필요할 때 사용(총합, 평균 등)
+- map, filter 등 여러 배열 메서드 동작을 대부분 대체할 수 있음
+- reduce 메서드의 주요 매개변수
+  - acc 
+    - 이전 callback 함수의 반환 값이 누적되는 변수
+    - initialValue(optional)
+      - 최초 callback 함수 호출 시 acc에 할당되는 값, default 값은 배열의 첫 번째 값
+- reduce의 첫번째 매개변수인 콜백함수의 첫번째 매개변수(acc)는 누적된 값(전 단계까지의 결과)
+- reduce의 두번째 매개변수인 initialValue는 누적될 값의 초기값, 지정하지 않을 시 첫번째 요소의 값이 됨
+
+```JavaScript
+const test = [90, 90, 80, 77]
+
+// 총합
+const sum = tests.reduce(function (total,x) {
+  return total + x
+}, 0) // 337
+
+// 화살표 함수
+const sum = tests.reduce((total, x) => total + x, 0)
+console.log(sum) // 337
+
+// 평균
+const sum = tests.reduce((total, x) => total + x, 0) / tests.length
+console.log(sum) // 84.25
+```
+
+![reduce 동작 방식](../assets/reduce_동작_방식.png)
+
+</br>
+
+> array.find(callback(element[, index[, array]]))
+
+```JavaScript
+array.find(function (element, index, array){
+  // do something
+})
+```
+
+- 배열의 각 요소에 대해 콜백 함수를 한 번씩 실행
+- 콜백 함수의 반환 값이 true면, 조건을 만족하는 첫번째 요소를 반환
+- 
