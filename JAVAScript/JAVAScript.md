@@ -1179,4 +1179,5 @@ array.find(function (element, index, array){
 
 - 배열의 각 요소에 대해 콜백 함수를 한 번씩 실행
 - 콜백 함수의 반환 값이 true면, 조건을 만족하는 첫번째 요소를 반환
+- 찾는 값이 배열에 없으면 undefined 반환
 - 
