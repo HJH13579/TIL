@@ -104,7 +104,7 @@
 > CSR 방식의 단점
 1. 첫 구동 시 필요한 데이터가 많으면 많을수록 최초 작동 시작까지 오랜 시간이 소요
 2. 모바일에 설치된 Web-App을 실행하게 되면 잠깐의 로딩 시간이 필요
-3. 검색 엔진 최적화(SEO, Search Engine Optimization)가 어려움
+3. <span style="color:red">검색 엔진 최적화</span>(SEO, Search Engine Optimization)가 어려움
    - 서버가 제공하는 것은 텅 빈 HTML
    - 내용을 채우는 것은 AJAX 요청으로 얻은 JSON 데이터로 클라이언트(브라우저)가 진행
 4. 대체적으로 HTML에 작성된 내용을 기반으로 하는 검색 엔진에 빈 HTML을 공유하는 SPA 서비스가 노출되기는 어려움
@@ -139,6 +139,7 @@
 ## Vue
 - Easy
 - 입문자가 시작하기 좋은 Framework
+  - 공식문서가 정말 잘 되어 있다.
 - 매우 직관적인 구조
 
 ```vue
