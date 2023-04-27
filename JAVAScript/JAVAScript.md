@@ -1,4 +1,4 @@
-bㅠb> JavaScript란?
+> JavaScript란?
 - JavaScript는 클라이언트 측 웹(<span style='color:red'>브라우저</span>)에서 실행
 - <span style='color:red'>쉽게 배울 수 있고</span> 강력한 스크립트 언어
 - 웹 페이지가 <span style='color:red'>이벤트</span> 발생 시 어떻게 작동하는 지 <span style='color:red'>디자인 / 프로그래밍</span>
