@@ -24,7 +24,12 @@
 ![Vue_CLI_Quick_Start](../assets/Vue_CLI_Quick_Start_1.png)
 
 ![Vue_CLI_Quick_Start](../assets/Vue_CLI_Quick_Start_2.png)
+
 cf) 'vite'를 많이 쓰기도 함
+
+</br>
+
+
 ![Vue_CLI_Quick_Start](../assets/Vue_CLI_Quick_Start_3.png)
 
 ![Vue_CLI_Quick_Start](../assets/Vue_CLI_Quick_Start_4.png)
